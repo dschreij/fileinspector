@@ -81,8 +81,7 @@ def determine_type_with_magic(filename, mime=True):
 			be used")
 	try:
 		ftype = magic.from_file(filename,mime=mime)
-	except OSError as e:
-		#logging.warning("Python-magic could not assess the file: {}".format(e))
+	except OSError :
 		ftype = False
 
 	if type(ftype) == bytes:
