@@ -4,15 +4,21 @@ Created on Wed Mar  2 11:37:36 2016
 
 @author: daniel
 """
+# Python3 compatibility
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import sys
 import mimetypes
-import logging
+import warnings
 
 try:
 	import magic
 except ImportError as e:
-	print("WARNING: python-magic could not be imported so its features will be \
-	unavailable.\n{}".format(e), file=sys.stderr)
+	warnings.warn("python-magic could not be imported so its features will be "
+	"unavailable.\n{}".format(e), ImportWarning)
 	magic = None
 
 def determine_category(mimetype):
@@ -77,11 +83,10 @@ def determine_type_with_magic(filename, mime=True):
 	string : the mimetype in the specified format.
 	"""
 	if magic is None:
-		raise ImportError("python-magic is not available. This function cannot \
-			be used")
+		raise ImportError("python-magic is not available. This function cannot be used")
 	try:
 		ftype = magic.from_file(filename,mime=mime)
-	except OSError :
+	except IOError:
 		ftype = False
 
 	if type(ftype) == bytes:
@@ -171,3 +176,20 @@ def translate_to_xdg(mimetype):
 		the mimetype translated to freedesktop.org format
 	"""
 	return mimetype.replace("/","-")
+
+if __name__ == "__main__":
+	import os
+	if len(sys.argv) < 2:
+		files = filter(lambda x: not x in [".",".."], os.listdir("."))
+		print("Inspecting files in current folder.\nYou can also check specific files"
+			" by passing them as arguments.\n")
+	else:
+		files = sys.argv[1:]
+	
+	for f in files:
+		f_full = os.path.abspath(f)
+		if(os.path.isdir(f_full)):
+			continue	
+		print("{}:\t\t{}".format(f, determine_type(f_full,'verbose')))
+
+
