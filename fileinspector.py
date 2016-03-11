@@ -107,8 +107,6 @@ def determine_type_with_mimetypes(filename):
 	could be determined.
 	"""
 	mime, encoding = mimetypes.guess_type(filename)
-	if mime is None:
-		return False
 	return mime
 
 
@@ -156,7 +154,7 @@ def determine_type(filename, output="mime"):
 
 	# freedesktop doesn't use <type>/<subtype> but <type>-<subtype> as mime
 	# format. Translate if requested.
-	if output=="xdg":
+	if output=="xdg" and not ftype is None:
 		ftype = translate_to_xdg(ftype)
 
 	return ftype
@@ -185,11 +183,11 @@ if __name__ == "__main__":
 			" by passing them as arguments.\n")
 	else:
 		files = sys.argv[1:]
-	
+
 	for f in files:
 		f_full = os.path.abspath(f)
 		if(os.path.isdir(f_full)):
-			continue	
+			continue
 		print("{}:\t\t{}".format(f, determine_type(f_full,'verbose')))
 
 
