@@ -60,7 +60,7 @@ def determine_category(mimetype):
 	elif "audio" in mimetype:
 		return 'audio'
 	# If nothing matched, simply return False
-	return False
+	return None
 
 def determine_type_with_magic(filename, mime=True):
 	""" Determines the filetype using the python-magic library.
@@ -87,7 +87,7 @@ def determine_type_with_magic(filename, mime=True):
 	try:
 		ftype = magic.from_file(filename,mime=mime)
 	except IOError:
-		ftype = False
+		ftype = None
 
 	if type(ftype) == bytes:
 		ftype = ftype.decode('utf-8')
@@ -149,7 +149,7 @@ def determine_type(filename, output="mime"):
 
 	# If python-magic is not available, or it could not determine the filetype,
 	# use mimetypes
-	if ftype == False:
+	if ftype == None:
 		ftype = determine_type_with_mimetypes(filename)
 
 	# freedesktop doesn't use <type>/<subtype> but <type>-<subtype> as mime
@@ -174,6 +174,9 @@ def translate_to_xdg(mimetype):
 		the mimetype translated to freedesktop.org format
 	"""
 	return mimetype.replace("/","-")
+
+__all__ = ['translate_to_xdg', 'determine_type', 'determine_type_with_mimetypes', 
+'determine_type_with_magic', 'determine_category']
 
 if __name__ == "__main__":
 	import os
