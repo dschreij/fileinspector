@@ -14,7 +14,30 @@ It's a simple as that, nothing fancy here  ;)
 
 ## Usage
 
-TODO
+You can use the utility from the command line.
+
+    python fileinspector.py /path/to/local.pdf
+
+for instance would return
+
+    /path/to/local.pdf:       PDF document, version 1.3
+
+if the file is locally accessible, and the python-magic dependency has been met. If a file is not locally accessible (for instance if the resource is located online), or the python-magic dependency is unmet, fileinspector uses the internal python mimetypes module to determine the filetype. Mimetypes bases its guess on the file's extension.
+
+    python fileinspector.py https://www.google.com/images/nav_logo242.png
+
+should return
+
+    https://www.google.com/images/nav_logo242.png:      image/png
+
+It is also possible to scan entire folders
+
+    python fileinspector.py *
+    README.md:      ASCII text, with very long lines
+    fileinspector.py:       Python script, ASCII text executable
+    fileinspector.pyc:      python 2.7 byte-compiled
+    setup.py:       Python script, ASCII text executable
+    test.md:        ASCII text
 
 ## License
 
