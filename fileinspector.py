@@ -1,14 +1,34 @@
 # -*- coding: utf-8 -*-
+
 """
+This file is part of fileinspector.
+
+fileinspector is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+fileinspector is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with fileinspector.  If not, see <http://www.gnu.org/licenses/>.
+
 Created on Wed Mar  2 11:37:36 2016
 
 @author: daniel
 """
+
+
 # Python3 compatibility
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
+
+__version__ = '0.1.0'
 
 import sys
 import mimetypes
@@ -185,11 +205,9 @@ if __name__ == "__main__":
 			" by passing them as arguments.\n")
 	else:
 		files = sys.argv[1:]
-	
+
 	for f in files:
 		f_full = os.path.abspath(f)
 		if(os.path.isdir(f_full)):
-			continue	
+			continue
 		print("{}:\t\t{}".format(f, determine_type(f_full,'verbose')))
-
-
