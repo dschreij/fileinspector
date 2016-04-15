@@ -158,8 +158,8 @@ def determine_type(filename, output="mime"):
 	found_type : string/boolean
 		the mimetype in the specified format or False if nothing could be found.
 	"""
-	# Initialize ftype as false
-	ftype = False
+	# Initialize ftype as None
+	ftype = None
 
 	# First try to use python-magic to determine the filetype, as it is not
 	# fooled by incorrect or absent file extensions.
