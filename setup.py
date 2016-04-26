@@ -30,7 +30,6 @@ setup(
 	url='https://github.com/dschreij/fileinspector',
 	py_modules=['fileinspector'],
 	classifiers=[
-		'Development Status :: 4 - Beta',
 		'Intended Audience :: Developers',
 		'Topic :: Desktop Environment',
 		'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
