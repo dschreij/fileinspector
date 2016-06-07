@@ -51,7 +51,7 @@ def determine_category(mimetype):
 
 	Returns
 	-------
-	string : the category or False if no match was found.
+	string : the category or None if no match was found.
 	"""
 
 	if 'image' in mimetype:
