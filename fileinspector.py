@@ -51,7 +51,7 @@ def determine_category(mimetype):
 
 	Returns
 	-------
-	string : the category or False if no match was found.
+	string : the category or None if no match was found.
 	"""
 
 	if 'image' in mimetype:
@@ -156,7 +156,7 @@ def determine_type(filename, output="mime"):
 	Returns
 	-------
 	found_type : string/boolean
-		the mimetype in the specified format or False if nothing could be found.
+		the mimetype in the specified format or None if nothing could be found.
 	"""
 	# Initialize ftype as None
 	ftype = None
@@ -195,7 +195,7 @@ def translate_to_xdg(mimetype):
 	"""
 	return mimetype.replace("/","-")
 
-__all__ = ['translate_to_xdg', 'determine_type', 'determine_type_with_mimetypes', 
+__all__ = ['translate_to_xdg', 'determine_type', 'determine_type_with_mimetypes',
 'determine_type_with_magic', 'determine_category']
 
 if __name__ == "__main__":
