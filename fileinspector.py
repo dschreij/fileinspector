@@ -28,7 +28,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 import sys
 import mimetypes
@@ -106,7 +106,9 @@ def determine_type_with_magic(filename, mime=True):
 		raise ImportError("python-magic is not available. This function cannot be used")
 	try:
 		ftype = magic.from_file(filename,mime=mime)
-	except IOError:
+	# In some cases, magic doesn't have the from_file() function, which is why
+	# we also catch AttributeErrors.
+	except (IOError, AttributeError):
 		ftype = None
 
 	if type(ftype) == bytes:
