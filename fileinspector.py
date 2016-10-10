@@ -18,7 +18,7 @@ along with fileinspector.  If not, see <http://www.gnu.org/licenses/>.
 
 Created on Wed Mar  2 11:37:36 2016
 
-@author: daniel
+@author: Daniel Schreij
 """
 
 
