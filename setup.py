@@ -18,11 +18,12 @@ You should have received a copy of the GNU General Public License
 along with fileinspector.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
 from setuptools import setup
 import fileinspector
 
 setup(
-	name='python-fileinspector',
+	name='fileinspector' if 'bdist_deb' in sys.argv else 'python-fileinspector',
 	version=fileinspector.__version__,
 	description='A module to determine file mimetypes',
 	author='Daniel Schreij',
